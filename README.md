@@ -12,10 +12,18 @@ Network program homework 1
 
 作業原始程式碼請上傳自行申請的github帳號。在demo作業時請現場clone並compile(可遠端到工作站、自己的電腦或自行帶筆電)。程式碼並請tar+gz一份上傳到ecourse備查。
 
-server:
+server參考來源:
 
 http://man7.org/linux/man-pages/man3/getaddrinfo.3.html
 
 http://beej-zhtw.netdpi.net/05-system-call-or-bust/5-7-send
 
-圖片讀取問題: https://stackoverflow.com/questions/45670369/c-web-server-image-not-showing-up-on-browser
+圖片讀取問題解決方法來源:
+
+https://stackoverflow.com/questions/45670369/c-web-server-image-not-showing-up-on-browser
+
+首先使用了getaddrinfo這個function, 接著讀res裡面的資料，作socket根bind,成功後,free掉res。
+
+接著listen，可以的連線數量爲10
+
+最後就是等着別人來連線,去做accept,接著呼叫fork來讓chil做事是，來看GET了什麼東西,依照條件來作處理,分別爲圖片及網頁處理,然後就結束
