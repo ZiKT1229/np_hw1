@@ -11,3 +11,11 @@ Network program homework 1
 3. 可自行設計作業規格以外的功能，並在demo中描述，做為額外加分項目。
 
 作業原始程式碼請上傳自行申請的github帳號。在demo作業時請現場clone並compile(可遠端到工作站、自己的電腦或自行帶筆電)。程式碼並請tar+gz一份上傳到ecourse備查。
+
+server:
+
+http://man7.org/linux/man-pages/man3/getaddrinfo.3.html
+
+http://beej-zhtw.netdpi.net/05-system-call-or-bust/5-7-send
+
+圖片讀取問題: https://stackoverflow.com/questions/45670369/c-web-server-image-not-showing-up-on-browser
