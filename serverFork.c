@@ -22,6 +22,12 @@ char imageheader[] =
 "HTTP/1.1 200 Ok\r\n"
 "Content-Type: image/jpeg\r\n\r\n";
 
+struct sigaction sa;
+
+void sigchld_handler(int s) {
+    while(waitpid(-1, NULL, WNOHANG) > 0);
+}
+
 int main(int argc, char *argv[]) {
     struct sockaddr_in server_addr, client_addr;
     socklen_t addrlen = sizeof(client_addr);
@@ -59,6 +65,15 @@ int main(int argc, char *argv[]) {
 	}
     
     freeaddrinfo(res);
+
+    sa.sa_handler = sigchld_handler; // kill zombie
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = SA_RESTART;
+
+    if (sigaction(SIGCHLD, &sa, NULL) == -1) {
+        perror("sigaction");
+        exit(1);
+    }
 
     if (listen(server_fd, 10) == -1) {
         perror("listen");
